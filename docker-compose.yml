@@ -2,7 +2,7 @@ services:
   backend:
     image: navegacion_dinamica
     build:
-      context: ./NavegacionDinamica
+      context: .
       dockerfile: Dockerfile
     ports:
       - "8085:80"
