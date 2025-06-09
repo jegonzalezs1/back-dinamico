@@ -7,6 +7,7 @@ services:
     ports:
       - "8085:80"
     environment:
+      - ASPNETCORE_URLS=http://+:80"
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DevConnection=Data Source=172.24.72.240,1433;Initial Catalog=navegacion_dinamica;User ID=sa;Password=Abc!1234;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
   
