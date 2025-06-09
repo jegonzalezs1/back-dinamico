@@ -1,6 +1,6 @@
 services:
   backend:
-    image: navegacion_dinamica
+    image: navegacion_dinamica_back
     build:
       context: .
       dockerfile: Dockerfile
