@@ -56,7 +56,13 @@ BEGIN
         BEGIN
             SELECT * FROM Formulario;
         END
-        COMMIT TRAN;
+		ELSE IF @accion = 'V' -- Consulta un formulario con sus campos
+		BEGIN
+			SELECT f.IdFormulario, f.NombreFormulario, c.IdCampo, c.NombreCampo, c.TipoCampo FROM Formulario f 
+			LEFT JOIN Campo c ON f.IdFormulario = c.IdFormulario
+			WHERE f.IdFormulario = @id_form;
+		END
+		COMMIT TRAN;
     END TRY
     BEGIN CATCH
         ROLLBACK TRAN;

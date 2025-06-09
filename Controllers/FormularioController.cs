@@ -35,6 +35,17 @@ namespace NavegacionDinamica.Controllers
             return Ok(formulario);
         }
 
+        [HttpGet("campos/{id}")]
+        public async Task<ActionResult<Formulario>> ObtenerConCamposId(int id)
+        {
+            var formulario = await _formularioService.ObtenerConCamposAsync(id);
+            if (formulario == null)
+            {
+                return NotFound();
+            }
+            return Ok(formulario);
+        }
+
         [HttpPost]
         public async Task<ActionResult> Insertar([FromBody] Formulario formulario)
         {

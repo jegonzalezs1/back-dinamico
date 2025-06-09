@@ -8,6 +8,7 @@ namespace NavegacionDinamica.Services.Interfaces
     {
         Task<List<Formulario>> ObtenerTodasAsync();
         Task<Formulario> ObtenerPorIdAsync(int idFormulario);
+        Task<Formulario> ObtenerConCamposAsync(int idFormulario);
         Task CrearAsync(Formulario formulario);
         Task ActualizarAsync(Formulario formulario);
         Task EliminarAsync(int idFormulario);

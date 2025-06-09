@@ -10,6 +10,7 @@ namespace NavegacionDinamica.Repository.Interfaces
         Task ActualizarAsync(Formulario formulario);
         Task EliminarAsync(int idFormulario);
         Task<Formulario> ObtenerPorIdAsync(int idFormulario);
+        Task<Formulario> ObtenerConCamposAsync(int idFormulario);
         Task<List<Formulario>> ObtenerTodasAsync();
     }
 }

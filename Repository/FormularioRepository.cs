@@ -92,6 +92,49 @@ namespace NavegacionDinamica.Repository
             return formulario;
         }
 
+        public async Task<Formulario> ObtenerConCamposAsync(int idFormulario)
+        {
+            Formulario formulario = null;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand("sp_crud_formulario", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@accion", "V");
+                cmd.Parameters.AddWithValue("@id_form", idFormulario);
+
+                conn.Open();
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        if (formulario == null)
+                        {
+                            formulario = new Formulario
+                            {
+                                IdFormulario = Convert.ToInt32(reader["IdFormulario"]),
+                                NombreFormulario = reader["NombreFormulario"].ToString(),
+                                Campos = new List<Campo>()
+                            };
+                        }
+
+                        if (!reader.IsDBNull(reader.GetOrdinal("IdCampo")))
+                        {
+                            formulario.Campos.Add(new Campo
+                            {
+                                IdCampo = Convert.ToInt32(reader["IdCampo"]),
+                                NombreCampo = reader["NombreCampo"].ToString(),
+                                TipoCampo = reader["TipoCampo"].ToString(),
+                                IdFormulario = Convert.ToInt32(reader["IdFormulario"])
+                            });
+                        }
+                    }
+                }
+            }
+
+            return formulario;
+        }
+
         public async Task<List<Formulario>> ObtenerTodasAsync()
         {
             var formularios = new List<Formulario>();

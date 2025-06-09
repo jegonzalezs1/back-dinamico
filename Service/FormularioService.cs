@@ -25,6 +25,11 @@ namespace NavegacionDinamica.Services
             return await _formularioRepository.ObtenerPorIdAsync(idFormulario);
         }
 
+        public async Task<Formulario> ObtenerConCamposAsync(int idFormulario)
+        {
+            return await _formularioRepository.ObtenerConCamposAsync(idFormulario);
+        }
+
         public async Task CrearAsync(Formulario formulario)
         {
             await _formularioRepository.InsertarAsync(formulario);
